@@ -33,14 +33,29 @@ function render(variables = {}) {
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
+          <h1>${variables.name == null ? "Your Name" : variables.name}</h1>
+          <h2>${
+            variables.lastName == null ? "Last Name" : variables.lastName
+          }</h2>
+          <h2>${variables.role == null ? "Role" : variables.role}</h2>
+          <h3>${variables.city == null ? "CITY" : variables.city}, ${
+    variables.country == null ? "COUNTRY" : variables.country
+  }</h3>
           <ul class="position-right">
-            <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/school/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/4geeksacademy"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://twitter.com/${
+              variables.twitter == null ? "twitter UID" : variables.twitter
+            }"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/${
+              variables.github == null ? "github UID" : variables.github
+            }"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/school/${
+              variables.linkedin == null ? "linkedin UID" : variables.linkedin
+            }"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://instagram.com/${
+              variables.instagram == null
+                ? "instagram UID"
+                : variables.instagram
+            }"><i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
@@ -56,7 +71,8 @@ window.onload = function() {
     // this is the image's url that will be used as a background for the profile cover
     background: "https://images.unsplash.com/photo-1511974035430-5de47d3b95da",
     // this is the url for the profile avatar
-    avatarURL: "https://randomuser.me/api/portraits/women/42.jpg",
+    avatarURL:
+      "https://media.licdn.com/dms/image/v2/D4E03AQEZYtVQNEVoJw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718278078106?e=1733356800&v=beta&t=NBOqEYTWZX1jni55iukgK_XcqNCCBTtAaxSCAFe6PE8",
     // social media bar position (left or right)
     socialMediaPosition: "position-left",
     // social media usernames
