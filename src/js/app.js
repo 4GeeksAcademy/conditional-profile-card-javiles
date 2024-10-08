@@ -28,20 +28,25 @@ function render(variables = {}) {
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
+  let socialMediaClass =
+    variables.socialMediaPosition.toLowerCase() === "left"
+      ? "position-left"
+      : "position-right";
 
   // reset the website body with the new html output
+  document.querySelector("ul").classList.add(socialMediaClass);
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>${variables.name == null ? "Your Name" : variables.name}</h1>
-          <h2>${
-            variables.lastName == null ? "Last Name" : variables.lastName
-          }</h2>
+          <h1>${variables.name == null ? "Your Name" : variables.name} ${
+    variables.lastName == null ? "Last Name" : variables.lastName
+  }</h1>
+         
           <h2>${variables.role == null ? "Role" : variables.role}</h2>
           <h3>${variables.city == null ? "CITY" : variables.city}, ${
     variables.country == null ? "COUNTRY" : variables.country
   }</h3>
-          <ul class="position-right">
+          <ul class=${variables.socialMediaPosition}>
             <li><a href="https://twitter.com/${
               variables.twitter == null ? "twitter UID" : variables.twitter
             }"><i class="fab fa-twitter"></i></a></li>
@@ -74,7 +79,7 @@ window.onload = function() {
     avatarURL:
       "https://media.licdn.com/dms/image/v2/D4E03AQEZYtVQNEVoJw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718278078106?e=1733356800&v=beta&t=NBOqEYTWZX1jni55iukgK_XcqNCCBTtAaxSCAFe6PE8",
     // social media bar position (left or right)
-    socialMediaPosition: "position-left",
+    socialMediaPosition: "position-right",
     // social media usernames
     twitter: null,
     github: null,
